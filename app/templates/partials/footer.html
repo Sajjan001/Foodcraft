@@ -1,0 +1,59 @@
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div class="footer__col footer__brand">
+      <div class="footer__logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Food Craft Institute Shahdol logo" class="footer__logo-img">
+        <strong>Food Craft Institute Shahdol</strong>
+      </div>
+      <p>{{ t('footer_desc') }}</p>
+      <p class="footer__demo-note">{{ t('footer_demo_note') }}</p>
+    </div>
+
+    <div class="footer__col">
+      <h4>{{ t('footer_quick_links') }}</h4>
+      <ul>
+        <li><a href="{{ url_for('main.about') }}">{{ t('nav_about') }}</a></li>
+        <li><a href="{{ url_for('main.courses') }}">{{ t('nav_courses') }}</a></li>
+        <li><a href="{{ url_for('main.admissions') }}">{{ t('nav_admissions') }}</a></li>
+        <li><a href="{{ url_for('main.placement') }}">{{ t('footer_placement_career') }}</a></li>
+        <li><a href="{{ url_for('main.notices') }}">{{ t('nav_notices') }}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>{{ t('footer_courses') }}</h4>
+      <ul>
+        {% for course in get_courses(current_lang) %}
+        <li><a href="{{ url_for('main.course_detail', slug=course.slug) }}">{{ course.short_title }}</a></li>
+        {% endfor %}
+        <li><a href="{{ url_for('main.facilities') }}">{{ t('nav_facilities') }}</a></li>
+        <li><a href="{{ url_for('main.gallery') }}">{{ t('nav_gallery') }}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>{{ t('footer_contact') }}</h4>
+      <address>{{ t('footer_address') }}</address>
+      <ul class="footer__contact">
+        <li><i class="bi bi-envelope-fill"></i> <a href="mailto:{{ institute_email }}">{{ institute_email }}</a></li>
+        <li><i class="bi bi-telephone-fill"></i> <a href="tel:{{ institute_phone_1 }}">{{ institute_phone_1 }}</a></li>
+        <li><i class="bi bi-telephone-fill"></i> <a href="tel:{{ institute_phone_2 }}">{{ institute_phone_2 }}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p>&copy; {{ current_year }} {{ t('footer_copyright') }}</p>
+      <ul class="footer__legal">
+        <li><a href="{{ url_for('main.privacy_policy') }}">{{ t('footer_privacy') }}</a></li>
+        <li><a href="{{ url_for('main.terms_conditions') }}">{{ t('footer_terms') }}</a></li>
+        <li><a href="{{ url_for('main.disclaimer') }}">{{ t('footer_disclaimer') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/91{{ institute_phone_2 }}" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>

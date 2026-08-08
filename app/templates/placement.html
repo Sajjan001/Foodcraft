@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}{{ t('placement_page_title') }} | {{ t('site_title') }}{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>{{ t('placement_page_title') }}</h1>
+    <div class="breadcrumb-row"><a href="{{ url_for('main.home') }}">{{ t('home') }}</a> / {{ t('nav_placement') }}</div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('placement_pathway_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('placement_pathway_title') }}</h2>
+    </div>
+    <div class="pathway">
+      <div class="pathway__step"><div class="num">1</div><strong>{{ t('pathway_training') }}</strong></div>
+      <i class="bi bi-arrow-right pathway__arrow"></i>
+      <div class="pathway__step"><div class="num">2</div><strong>{{ t('pathway_practical') }}</strong></div>
+      <i class="bi bi-arrow-right pathway__arrow"></i>
+      <div class="pathway__step"><div class="num">3</div><strong>{{ t('pathway_industrial') }}</strong></div>
+      <i class="bi bi-arrow-right pathway__arrow"></i>
+      <div class="pathway__step"><div class="num">4</div><strong>{{ t('pathway_placement') }}</strong></div>
+      <i class="bi bi-arrow-right pathway__arrow"></i>
+      <div class="pathway__step"><div class="num">5</div><strong>{{ t('pathway_career') }}</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-band-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-briefcase-fill"></i></div>
+          <h4>{{ t('placement_card1_title') }}</h4>
+          <p>{{ t('placement_card1_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-building-gear"></i></div>
+          <h4>{{ t('placement_card2_title') }}</h4>
+          <p>{{ t('placement_card2_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-cup-hot-fill"></i></div>
+          <h4>{{ t('placement_card3_title') }}</h4>
+          <p>{{ t('placement_card3_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-building"></i></div>
+          <h4>{{ t('placement_card4_title') }}</h4>
+          <p>{{ t('placement_card4_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-signpost-split-fill"></i></div>
+          <h4>{{ t('placement_card5_title') }}</h4>
+          <p>{{ t('placement_card5_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-globe-asia-australia"></i></div>
+          <h4>{{ t('placement_card6_title') }}</h4>
+          <p>{{ t('placement_card6_text') }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card mt-5">
+      <strong>{{ t('placement_note') }}</strong> {{ t('placement_note_text') }}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-band">
+      <h2>{{ t('placement_cta_title') }}</h2>
+      <p>{{ t('placement_cta_text') }}</p>
+      <div class="btn-group-cta">
+        <a href="{{ url_for('main.admissions') }}" class="btn btn--saffron"><i class="bi bi-send-fill"></i> {{ t('btn_apply_now') }}</a>
+        <a href="tel:{{ institute_phone_1 }}" class="btn btn--outline-light"><i class="bi bi-telephone-fill"></i> {{ t('btn_call_now') }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

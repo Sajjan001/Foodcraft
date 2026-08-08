@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" role="img" aria-label="Food Craft Institute Shahdol logo">
+  <title>Food Craft Institute Shahdol</title>
+
+  <!-- Orange/saffron outline layer -->
+  <g fill="#f2390c">
+    <circle cx="120" cy="95" r="88"/>
+    <circle cx="55" cy="150" r="58"/>
+    <circle cx="185" cy="150" r="58"/>
+    <rect x="62" y="182" width="116" height="74" rx="8"/>
+  </g>
+
+  <!-- Navy blue inner fill layer -->
+  <g fill="#122a58">
+    <circle cx="120" cy="97" r="76"/>
+    <circle cx="58" cy="152" r="46"/>
+    <circle cx="182" cy="152" r="46"/>
+    <rect x="74" y="192" width="92" height="56" rx="5"/>
+  </g>
+
+  <!-- FCi lettermark -->
+  <g fill="#ffffff" font-family="'Poppins','Segoe UI',Arial,sans-serif" font-weight="700">
+    <text x="63" y="165" font-size="98">F</text>
+    <text x="118" y="165" font-size="98">C</text>
+    <text x="176" y="165" font-size="98">ı</text>
+  </g>
+  <circle cx="182" cy="80" r="9" fill="#f2390c"/>
+
+  <!-- Shahdol banner text (constrained to stay inside the navy band, clear of the orange border) -->
+  <text x="120" y="228" text-anchor="middle" fill="#ffffff" font-family="'Poppins','Segoe UI',Arial,sans-serif" font-weight="700" font-size="24" textLength="78" lengthAdjust="spacingAndGlyphs">Shahdol</text>
+</svg>

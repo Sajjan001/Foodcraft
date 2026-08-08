@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}{{ t('about_page_title') }} | {{ t('site_title') }}{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>{{ t('about_page_title') }}</h1>
+    <div class="breadcrumb-row"><a href="{{ url_for('main.home') }}">{{ t('home') }}</a> / {{ t('about_page_title') }}</div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="section-eyebrow">{{ t('about_who_eyebrow') }}</span>
+        <h2 class="section-title">{{ t('about_title') }}</h2>
+        <p>{{ t('about_p1') }}</p>
+        <p>{{ t('about_p2') }}</p>
+      </div>
+      <div class="col-lg-6">
+        <img src="https://placehold.co/800x560/0b3d6e/ffffff?text=Institute+Building" alt="Institute building placeholder" class="rounded-4 shadow-sm">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-band-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-flag-fill"></i></div>
+          <h4>{{ t('about_establishment_title') }}</h4>
+          <p>{{ t('about_establishment_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-bank"></i></div>
+          <h4>{{ t('about_dept_title') }}</h4>
+          <p>{{ t('about_dept_text') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="info-card">
+      <div class="d-flex align-items-center gap-4 flex-wrap">
+        <img src="{{ url_for('static', filename='images/nchmct-logo.svg') }}" alt="NCHMCT logo" style="width:110px; height:auto; flex-shrink:0;">
+        <div>
+          <strong>{{ t('about_affiliation_title') }}</strong>
+          <p class="mb-0 mt-2">{{ t('about_affiliation_text') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-band-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('about_leadership_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('about_principal_title') }}</h2>
+    </div>
+    <div class="principal-card">
+      <div class="principal-photo">
+        <img src="https://placehold.co/400x400/e8720c/ffffff?text=Principal+Photo" alt="Principal photograph placeholder">
+      </div>
+      <div>
+        <p style="font-style: italic;">{{ t('about_principal_msg') }}</p>
+        <p class="fw-heading mb-0" style="color: var(--blue-900); font-weight:700;">{{ t('about_principal_name') }}</p>
+        <p class="text-muted small mb-0">{{ t('about_principal_role') }}</p>
+        <p class="principal-signature">{{ t('about_principal_sig') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('about_purpose_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('about_vm_title') }}</h2>
+    </div>
+    <div class="vm-grid">
+      <div class="vm-card vm-card--vision">
+        <i class="bi bi-eye-fill"></i>
+        <h3>{{ t('about_vision_title') }}</h3>
+        <p>{{ t('about_vision_text') }}</p>
+      </div>
+      <div class="vm-card vm-card--mission">
+        <i class="bi bi-bullseye"></i>
+        <h3>{{ t('about_mission_title') }}</h3>
+        <p>{{ t('about_mission_text') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-band-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('about_milestones_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('about_achievements_title') }}</h2>
+      <p class="section-subtitle mx-auto">{{ t('about_achievements_subtitle') }}</p>
+    </div>
+    <div class="row g-4">
+      {% for item in achievements %}
+      <div class="col-md-4">
+        <div class="placeholder-card h-100">
+          <i class="bi bi-award"></i>
+          <h5 class="fw-heading" style="font-size:0.95rem; color: var(--blue-900);">{{ item.title }}</h5>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

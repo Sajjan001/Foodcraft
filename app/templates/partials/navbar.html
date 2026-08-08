@@ -1,0 +1,50 @@
+<header class="site-header" id="siteHeader">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <a href="tel:{{ institute_phone_1 }}"><i class="bi bi-telephone-fill"></i> {{ institute_phone_1 }}</a>
+        <div class="lang-switch">
+          <a href="{{ url_for('main.set_language', lang='en') }}" class="{{ 'is-active' if current_lang == 'en' }}">EN</a>
+          <span>|</span>
+          <a href="{{ url_for('main.set_language', lang='hi') }}" class="{{ 'is-active' if current_lang == 'hi' }}">हिं</a>
+        </div>
+        <a href="mailto:{{ institute_email }}" class="topbar__email"><i class="bi bi-envelope-fill"></i> <span class="topbar__email-text">{{ institute_email }}</span></a>
+      </div>
+      <div class="topbar__tag">{{ t('topbar_tag') }}</div>
+    </div>
+  </div>
+
+  <nav class="navbar container">
+    <a href="{{ url_for('main.home') }}" class="navbar__brand">
+      <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Food Craft Institute Shahdol logo" class="navbar__logo-img">
+      <span class="navbar__title">
+        <strong>{{ t('nav_institute_name') }}</strong>
+        <small>{{ t('nav_institute_place') }}</small>
+      </span>
+    </a>
+
+    <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="navbar__menu" id="navMenu">
+      <ul class="navbar__links">
+        <li><a href="{{ url_for('main.home') }}" class="{{ 'is-active' if active_page == 'home' else '' }}">{{ t('nav_home') }}</a></li>
+        <li><a href="{{ url_for('main.about') }}" class="{{ 'is-active' if active_page == 'about' else '' }}">{{ t('nav_about') }}</a></li>
+        <li><a href="{{ url_for('main.courses') }}" class="{{ 'is-active' if active_page == 'courses' else '' }}">{{ t('nav_courses') }}</a></li>
+        <li><a href="{{ url_for('main.admissions') }}" class="{{ 'is-active' if active_page == 'admissions' else '' }}">{{ t('nav_admissions') }}</a></li>
+        <li><a href="{{ url_for('main.placement') }}" class="{{ 'is-active' if active_page == 'placement' else '' }}">{{ t('nav_placement') }}</a></li>
+        <li><a href="{{ url_for('main.facilities') }}" class="{{ 'is-active' if active_page == 'facilities' else '' }}">{{ t('nav_facilities') }}</a></li>
+        <li><a href="{{ url_for('main.gallery') }}" class="{{ 'is-active' if active_page == 'gallery' else '' }}">{{ t('nav_gallery') }}</a></li>
+        <li><a href="{{ url_for('main.notices') }}" class="{{ 'is-active' if active_page == 'notices' else '' }}">{{ t('nav_notices') }}</a></li>
+        <li><a href="{{ url_for('main.contact') }}" class="{{ 'is-active' if active_page == 'contact' else '' }}">{{ t('nav_contact') }}</a></li>
+      </ul>
+      <div class="lang-switch lang-switch--mobile">
+        <a href="{{ url_for('main.set_language', lang='en') }}" class="{{ 'is-active' if current_lang == 'en' }}">English</a>
+        <span>|</span>
+        <a href="{{ url_for('main.set_language', lang='hi') }}" class="{{ 'is-active' if current_lang == 'hi' }}">हिंदी</a>
+      </div>
+      <a href="{{ url_for('main.admissions') }}" class="btn btn--saffron navbar__cta">{{ t('nav_admission_open') }}</a>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1150" role="img" aria-label="NCHMCT logo">
+  <title>NCHMCT</title>
+
+  <!-- Left spike: sharp point at top, straight inner edge, curved flaring outer edge -->
+  <path fill="#1a3d94" d="
+    M 628,8
+    C 615,200 590,380 520,520
+    C 400,700 150,800 15,845
+    C 8,852 5,858 8,862
+    L 628,862
+    Z"/>
+
+  <!-- Right spike: mirror of left -->
+  <path fill="#1a3d94" d="
+    M 772,8
+    C 785,200 810,380 880,520
+    C 1000,700 1250,800 1385,845
+    C 1392,852 1395,858 1392,862
+    L 772,862
+    Z"/>
+
+  <circle cx="700" cy="300" r="50" fill="#1a3d94"/>
+
+  <text x="700" y="1080" text-anchor="middle" fill="#101010"
+        font-family="'Poppins','Segoe UI',Arial,sans-serif" font-weight="700"
+        font-size="165" letter-spacing="28">NCHMCT</text>
+</svg>

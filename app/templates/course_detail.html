@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }} | {{ t('site_title') }}{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>{{ course.title }}</h1>
+    <div class="breadcrumb-row"><a href="{{ url_for('main.home') }}">{{ t('home') }}</a> / <a href="{{ url_for('main.courses') }}">{{ t('nav_courses') }}</a> / {{ course.short_title }}</div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <img src="{{ course.image }}" alt="{{ course.title }}" class="rounded-4 shadow-sm mb-4">
+        <div class="quick-info-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="quick-info-card">
+            <i class="bi bi-clock-history"></i>
+            <div class="label">{{ t('meta_duration') }}</div>
+            <div class="value">{{ course.duration }}</div>
+          </div>
+          <div class="quick-info-card">
+            <i class="bi bi-check2-circle"></i>
+            <div class="label">{{ t('meta_eligibility') }}</div>
+            <div class="value">{{ course.eligibility }}</div>
+          </div>
+          <div class="quick-info-card">
+            <i class="bi bi-people"></i>
+            <div class="label">{{ t('meta_seats') }}</div>
+            <div class="value">{{ course.seats }}</div>
+          </div>
+          <div class="quick-info-card">
+            <i class="bi bi-tag"></i>
+            <div class="label">{{ t('course_fee_label') }}</div>
+            <div class="value">{{ course.fee }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <span class="section-eyebrow">{{ t('course_overview_eyebrow') }}</span>
+        <h2 class="section-title">{{ t('course_overview_title') }}</h2>
+        <p>{{ course.overview }}</p>
+
+        <h3 class="mt-4 mb-3" style="font-size:1.2rem;">{{ t('course_learn_title') }}</h3>
+        <div class="row g-3 mb-4">
+          {% for point in course.learn_points %}
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start gap-2">
+              <i class="bi bi-check-circle-fill text-saffron mt-1"></i>
+              <span>{{ point }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <h3 class="mt-4 mb-3" style="font-size:1.2rem;">{{ t('course_career_title') }}</h3>
+        <div class="row g-3 mb-3">
+          {% for career in course.career_options %}
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start gap-2">
+              <i class="bi bi-briefcase-fill text-blue mt-1"></i>
+              <span>{{ career }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <p class="text-muted small">{{ t('course_career_disclaimer') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-band-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-building-gear"></i></div>
+          <h4>{{ t('course_industrial_title') }}</h4>
+          <p>{{ t('course_industrial_text') }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="why-card h-100">
+          <div class="why-card__icon"><i class="bi bi-briefcase-fill"></i></div>
+          <h4>{{ t('course_placement_title') }}</h4>
+          <p>{{ t('course_placement_text') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-band">
+      <h2>{{ t('course_fee_label') }}: {{ course.fee }}</h2>
+      <p>{{ course.fee_note }}</p>
+      <div class="btn-group-cta">
+        <a href="{{ url_for('main.admissions') }}?course={{ course.slug }}" class="btn btn--saffron"><i class="bi bi-send-fill"></i> {{ t('btn_apply_now') }}</a>
+        <a href="tel:{{ institute_phone_1 }}" class="btn btn--outline-light"><i class="bi bi-telephone-fill"></i> {{ t('btn_call_now') }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if other_courses %}
+<section class="bg-band-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('course_other_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('course_other_title') }}</h2>
+    </div>
+    <div class="course-grid">
+      {% for c in other_courses %}
+      <div class="course-card fade-in-up">
+        <div class="course-card__image">
+          <img src="{{ c.image }}" alt="{{ c.title }}">
+          <span class="course-card__fee-tag">{{ c.fee }}</span>
+        </div>
+        <div class="course-card__body">
+          <h3>{{ c.title }}</h3>
+          <p>{{ c.short_description }}</p>
+          <div class="course-card__actions">
+            <a href="{{ url_for('main.course_detail', slug=c.slug) }}" class="btn btn--outline-blue btn--sm">{{ t('btn_view_details') }}</a>
+            <a href="{{ url_for('main.admissions') }}?course={{ c.slug }}" class="btn btn--saffron btn--sm">{{ t('btn_apply_now') }}</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: fci-shahdol
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: INSTITUTE_PHONE_1
+        value: "8435766076"
+      - key: INSTITUTE_PHONE_2
+        value: "9201881729"
+      - key: INSTITUTE_EMAIL
+        value: principal.fcirewa@mp.gov.in

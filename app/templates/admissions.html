@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}{{ t('admissions_page_title') }} | {{ t('site_title') }}{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>{{ t('admissions_page_title') }}</h1>
+    <div class="breadcrumb-row"><a href="{{ url_for('main.home') }}">{{ t('home') }}</a> / {{ t('nav_admissions') }}</div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('admissions_open_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('admissions_available_title') }}</h2>
+      <p class="section-subtitle mx-auto">{{ t('admissions_available_subtitle') }}</p>
+    </div>
+
+    <div class="info-card mb-5">
+      <strong><i class="bi bi-mortarboard-fill"></i> {{ t('admissions_scholarship_title') }}</strong>
+      <p class="mb-0 mt-2">{{ t('admissions_scholarship_text') }}</p>
+    </div>
+
+    <div class="course-grid mb-4">
+      {% for course in courses %}
+      <div class="course-card">
+        <div class="course-card__image">
+          <img src="{{ course.image }}" alt="{{ course.title }}">
+          <span class="course-card__fee-tag">{{ course.fee }}</span>
+        </div>
+        <div class="course-card__body">
+          <h3>{{ course.title }}</h3>
+          <div class="course-meta">
+            <div><span class="meta-label">{{ t('meta_duration') }}</span><span class="meta-value">{{ course.duration }}</span></div>
+            <div><span class="meta-label">{{ t('meta_eligibility') }}</span><span class="meta-value">{{ course.eligibility }}</span></div>
+            <div><span class="meta-label">{{ t('meta_seats') }}</span><span class="meta-value">{{ course.seats }}</span></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="bg-band-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">{{ t('admissions_process_eyebrow') }}</span>
+      <h2 class="section-title">{{ t('admissions_process_title') }}</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">1</div><h4>{{ t('step1_title') }}</h4><p>{{ t('step1_text') }}</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>{{ t('step2_title') }}</h4><p>{{ t('step2_text') }}</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>{{ t('step3_title') }}</h4><p>{{ t('step3_text') }}</p></div>
+      <div class="step-card"><div class="step-num">4</div><h4>{{ t('step4_title') }}</h4><p>{{ t('step4_text') }}</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        {% if submitted %}
+        <div class="alert alert-success mb-4">
+          <i class="bi bi-check-circle-fill"></i> {{ t('admissions_submitted_alert') }}
+        </div>
+        {% endif %}
+
+        <div class="info-card mb-4">
+          <strong>{{ t('admissions_demo_notice') }}</strong> {{ t('admissions_demo_notice_text') }}
+        </div>
+
+        <div class="form-card">
+          <h3 class="mb-4" style="font-size:1.3rem;">{{ t('admissions_form_title') }}</h3>
+          <form method="POST" action="{{ url_for('main.admissions') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_full_name') }} *</label>
+                <input type="text" name="full_name" class="form-control {{ 'is-invalid' if errors.full_name }}" value="{{ form_data.full_name or '' }}" required>
+                {% if errors.full_name %}<div class="invalid-feedback">{{ errors.full_name }}</div>{% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_parent_name') }} *</label>
+                <input type="text" name="parent_name" class="form-control {{ 'is-invalid' if errors.parent_name }}" value="{{ form_data.parent_name or '' }}" required>
+                {% if errors.parent_name %}<div class="invalid-feedback">{{ errors.parent_name }}</div>{% endif %}
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_dob') }} *</label>
+                <input type="date" name="dob" class="form-control {{ 'is-invalid' if errors.dob }}" value="{{ form_data.dob or '' }}" required>
+                {% if errors.dob %}<div class="invalid-feedback">{{ errors.dob }}</div>{% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_gender') }} *</label>
+                <select name="gender" class="form-select {{ 'is-invalid' if errors.gender }}" required>
+                  <option value="" disabled {{ 'selected' if not form_data.gender }}>{{ t('form_gender_select') }}</option>
+                  <option value="Male" {{ 'selected' if form_data.gender == 'Male' }}>{{ t('form_gender_male') }}</option>
+                  <option value="Female" {{ 'selected' if form_data.gender == 'Female' }}>{{ t('form_gender_female') }}</option>
+                  <option value="Other" {{ 'selected' if form_data.gender == 'Other' }}>{{ t('form_gender_other') }}</option>
+                </select>
+                {% if errors.gender %}<div class="invalid-feedback">{{ errors.gender }}</div>{% endif %}
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_mobile') }} *</label>
+                <input type="tel" name="mobile" maxlength="10" class="form-control {{ 'is-invalid' if errors.mobile }}" value="{{ form_data.mobile or '' }}" required>
+                {% if errors.mobile %}<div class="invalid-feedback">{{ errors.mobile }}</div>{% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_email') }} *</label>
+                <input type="email" name="email" class="form-control {{ 'is-invalid' if errors.email }}" value="{{ form_data.email or '' }}" required>
+                {% if errors.email %}<div class="invalid-feedback">{{ errors.email }}</div>{% endif %}
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">{{ t('form_address') }} *</label>
+                <textarea name="address" rows="2" class="form-control {{ 'is-invalid' if errors.address }}" required>{{ form_data.address or '' }}</textarea>
+                {% if errors.address %}<div class="invalid-feedback">{{ errors.address }}</div>{% endif %}
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_district') }} *</label>
+                <input type="text" name="district" class="form-control {{ 'is-invalid' if errors.district }}" value="{{ form_data.district or '' }}" required>
+                {% if errors.district %}<div class="invalid-feedback">{{ errors.district }}</div>{% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_state') }} *</label>
+                <select name="state" class="form-select {{ 'is-invalid' if errors.state }}" required>
+                  <option value="" disabled {{ 'selected' if not form_data.state }}>{{ t('form_state_select') }}</option>
+                  {% for state in states %}
+                  <option value="{{ state }}" {{ 'selected' if form_data.state == state }}>{{ state }}</option>
+                  {% endfor %}
+                </select>
+                {% if errors.state %}<div class="invalid-feedback">{{ errors.state }}</div>{% endif %}
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_qualification') }} *</label>
+                <select name="qualification" class="form-select {{ 'is-invalid' if errors.qualification }}" required>
+                  <option value="" disabled {{ 'selected' if not form_data.qualification }}>{{ t('form_qualification_select') }}</option>
+                  <option value="10th Pass" {{ 'selected' if form_data.qualification == '10th Pass' }}>10th Pass</option>
+                  <option value="12th Pass" {{ 'selected' if form_data.qualification == '12th Pass' }}>12th Pass</option>
+                  <option value="Graduate" {{ 'selected' if form_data.qualification == 'Graduate' }}>Graduate</option>
+                </select>
+                {% if errors.qualification %}<div class="invalid-feedback">{{ errors.qualification }}</div>{% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_course_select_label') }} *</label>
+                <select name="course" class="form-select {{ 'is-invalid' if errors.course }}" required>
+                  <option value="" disabled {{ 'selected' if not form_data.course }}>{{ t('form_course_select') }}</option>
+                  {% for course in courses %}
+                  <option value="{{ course.slug }}" {{ 'selected' if (form_data.course == course.slug) or (request.args.get('course') == course.slug and not form_data) }}>{{ course.title }}</option>
+                  {% endfor %}
+                </select>
+                {% if errors.course %}<div class="invalid-feedback">{{ errors.course }}</div>{% endif %}
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_photo') }}</label>
+                <input type="file" name="photograph" accept=".jpg,.jpeg,.png,.webp" class="form-control {{ 'is-invalid' if errors.photograph }}">
+                <div class="form-text">{{ t('form_photo_hint') }}</div>
+                {% if errors.photograph %}<div class="invalid-feedback">{{ errors.photograph }}</div>{% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ t('form_documents') }}</label>
+                <input type="file" name="documents" accept=".pdf,.jpg,.jpeg,.png" class="form-control {{ 'is-invalid' if errors.documents }}">
+                <div class="form-text">{{ t('form_documents_hint') }}</div>
+                {% if errors.documents %}<div class="invalid-feedback">{{ errors.documents }}</div>{% endif %}
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--saffron btn--block mt-4">
+              <i class="bi bi-send-fill"></i> {{ t('btn_submit_application') }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
