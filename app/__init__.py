@@ -51,3 +51,9 @@ def create_app():
         }
 
     return app
+
+
+# Module-level Flask instance so `gunicorn app:app` (Render's auto-detected
+# default command) resolves correctly, in addition to the `run:app` target
+# used by run.py / passenger_wsgi.py / render.yaml.
+app = create_app()
